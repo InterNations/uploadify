@@ -545,6 +545,7 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
                     $('#' + queuedFile.id).remove();
                     this.cancelUpload(queuedFile.id);
                     this.queueData.filesReplaced++;
+                    if (settings.onReplace) settings.onReplace.call(this, queuedFile);
 				}
 			}
 
