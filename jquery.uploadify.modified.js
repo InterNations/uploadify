@@ -538,8 +538,10 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 			var queuedFile = {};
 			for (var n in this.queueData.files) {
 				queuedFile = this.queueData.files[n];
-				if (queuedFile.uploaded != true && queuedFile.name == file.name) {
-                    // marcelb: we always replace items on the queue, and dont ask the user
+                // marcelb: we always replace items on the queue, and dont ask the user.
+                // We addded the condition that the filesize should be the same,
+                // this allows the user to upload file with the same name from different folders
+				if (queuedFile.uploaded != true && queuedFile.name == file.name && queuedFile.size === file.size) {
                     $('#' + queuedFile.id).remove();
                     this.cancelUpload(queuedFile.id);
                     this.queueData.filesReplaced++;
